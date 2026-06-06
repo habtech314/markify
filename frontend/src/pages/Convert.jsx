@@ -47,7 +47,7 @@ export default function Convert({ addToHistory }) {
     formData.append("file", file);
 
     try {
-      const res = await fetch("http://localhost:8000/convert", {
+      const res = await fetch("https://markify-1.onrender.com/convert", {
         method: "POST",
         body: formData,
       });
