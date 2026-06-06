@@ -376,12 +376,41 @@ ul { list-style: none; }
 }
 .file-pill-name { font-size: 14px; font-weight: 500; color: var(--text); }
 .file-pill-size { font-size: 12px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+.file-pill-status {
+  font-size: 10px; font-weight: 500; font-family: 'JetBrains Mono', monospace;
+  padding: 3px 8px; border-radius: var(--radius); letter-spacing: 0.3px;
+}
+.file-pill-status.done { background: var(--accent-muted); color: var(--accent-text); }
+.file-pill-status.converting { background: rgba(59, 130, 246, 0.1); color: #60A5FA; }
+.file-pill-status.error { background: rgba(239, 68, 68, 0.1); color: var(--destructive); }
 .file-pill-remove {
-  margin-left: auto; font-size: 16px; color: var(--text-muted);
+  font-size: 16px; color: var(--text-muted);
   width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
   border-radius: var(--radius); transition: background 0.15s, color 0.15s;
+  flex-shrink: 0;
 }
 .file-pill-remove:hover { background: var(--bg-tertiary); color: var(--destructive); }
+
+/* ── CONVERT: BATCH FILE LIST ── */
+.file-list { display: flex; flex-direction: column; gap: 8px; max-height: 240px; overflow-y: auto; }
+.file-list .file-pill { flex-shrink: 0; }
+
+/* ── CONVERT: RESULT TABS ── */
+.result-tabs { display: flex; gap: 4px; overflow-x: auto; flex-shrink: 0; }
+.result-tab {
+  font-size: 12px; font-weight: 500; white-space: nowrap;
+  color: var(--text-muted); padding: 6px 14px; border-radius: var(--radius);
+  border: 1px solid var(--border); transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.result-tab:hover { background: var(--bg-tertiary); color: var(--text-secondary); }
+.result-tab.active {
+  background: var(--accent-muted); color: var(--accent-text);
+  border-color: rgba(34, 197, 94, 0.3);
+}
+.result-tab-count {
+  font-size: 10px; font-family: 'JetBrains Mono', monospace;
+  color: inherit; opacity: 0.6; margin-left: 4px;
+}
 
 /* ── CONVERT: URL INPUT ── */
 .url-input-wrap {

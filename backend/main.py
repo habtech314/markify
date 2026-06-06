@@ -37,6 +37,21 @@ async def convert_url(data: UrlRequest):
     result = md.convert(data.url)
     return {"markdown": result.text_content, "url": data.url}
 
+@app.post("/convert-batch")
+async def convert_batch(files: list[UploadFile] = File(...)):
+    results = []
+    for file in files:
+        suffix = os.path.splitext(file.filename)[1]
+        with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
+            tmp.write(await file.read())
+            tmp_path = tmp.name
+
+        result = md.convert(tmp_path)
+        os.unlink(tmp_path)
+
+        results.append({"markdown": result.text_content, "filename": file.filename})
+    return {"results": results}
+
 @app.get("/health")
 async def health():
     return {"status": "ok"}
